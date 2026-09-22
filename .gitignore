@@ -20,3 +20,6 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+# local MCP config (kept out of the public repo)
+.mcp.json
