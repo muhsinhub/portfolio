@@ -1,0 +1,64 @@
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Design tokens (Bold / Poster archetype) ===== */
+:root {
+  --color-primary: #5b5bd6;        /* confident indigo accent */
+  --color-primary-dark: #4a4ac0;
+  --color-text: #0f1115;           /* near-black — also the hero/footer background */
+  --color-text-light: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f4f4f5;
+  --color-border: #e5e7eb;
+
+  --font-display: var(--font-space), system-ui, sans-serif;  /* heavy headings */
+  --font-body: var(--font-inter), system-ui, sans-serif;     /* readable body */
+
+  --max-width: 1150px;
+  --radius: 4px;                   /* mostly sharp, poster feel */
+}
+
+/* ===== Base ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* anchor targets clear the fixed header when smooth-scrolling */
+section {
+  scroll-margin-top: 84px;
+}
+
+/* reusable width wrapper */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
