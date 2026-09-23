@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/Navbar.module.css'
 
-// Single-page nav: each link smooth-scrolls to a section id on the home page.
 const links = [
   { href: '#work', label: 'Work' },
   { href: '#about', label: 'About' },
@@ -16,10 +15,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  // Give the header a solid background once the user scrolls past the hero,
-  // so the text stays readable over the light lower sections.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll()
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
@@ -27,36 +24,36 @@ export default function Navbar() {
 
   return (
     <>
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-      <a href="#top" className={styles.logo}>brownbuilds</a>
+      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+        <a href="#top" className={styles.logo}>
+          brownbuilds<span className={styles.dot}>.</span>
+        </a>
 
-      <button
-        className={styles.menuBtn}
-        onClick={() => setOpen(true)}
-        aria-label="Open menu"
-      >
-        Menu
-      </button>
-    </header>
-
-    {open && (
-      <div className={styles.overlay}>
-        <button
-          className={styles.close}
-          onClick={() => setOpen(false)}
-          aria-label="Close menu"
-        >
-          &times;
-        </button>
-        <nav className={styles.overlayNav}>
+        <nav className={styles.links}>
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
-              {l.label}
-            </a>
+            <a key={l.href} href={l.href}>{l.label}</a>
           ))}
         </nav>
-      </div>
-    )}
+
+        <a href="#contact" className={styles.cta}>Get in touch</a>
+
+        <button className={styles.burger} onClick={() => setOpen(true)} aria-label="Open menu">
+          <span /><span /><span />
+        </button>
+      </header>
+
+      {open && (
+        <div className={styles.overlay}>
+          <button className={styles.close} onClick={() => setOpen(false)} aria-label="Close menu">
+            &times;
+          </button>
+          <nav className={styles.overlayNav}>
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>
+            ))}
+          </nav>
+        </div>
+      )}
     </>
   )
 }

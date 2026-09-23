@@ -1,54 +1,49 @@
 .footer {
-  background: var(--color-text);
-  color: #ffffff;
-  padding: 4rem 2rem 2.5rem;
+  border-top: 1px solid var(--border);
+  background: rgba(7, 7, 13, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 4rem 0 2.5rem;
 }
-
 .inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   text-align: center;
 }
-
 .wordmark {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(1.8rem, 5vw, 3rem);
   letter-spacing: -0.02em;
+  color: var(--fg);
 }
-
 .email {
-  font-size: 1.1rem;
-  color: #ffffff;
-  border-bottom: 2px solid var(--color-primary);
+  font-size: 1.05rem;
+  color: var(--fg);
+  border-bottom: 2px solid var(--accent);
   padding-bottom: 2px;
+  transition: color 0.2s var(--ease);
 }
-
+.email:hover { color: var(--accent-2); }
 .socials {
   display: flex;
   gap: 1.5rem;
   list-style: none;
   margin-top: 0.5rem;
 }
-
 .socials a {
-  color: #cfcfd4;
+  color: var(--fg-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.8rem;
-  transition: color 0.2s;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: color 0.2s var(--ease);
 }
-
-.socials a:hover {
-  color: #ffffff;
-}
-
+.socials a:hover { color: var(--fg); }
 .copyright {
-  margin-top: 1.5rem;
-  color: #8b8b93;
+  margin-top: 1.25rem;
+  color: var(--fg-muted);
   font-size: 0.8rem;
 }

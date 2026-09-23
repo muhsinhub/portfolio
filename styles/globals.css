@@ -5,60 +5,136 @@
   padding: 0;
 }
 
-/* ===== Design tokens (Bold / Poster archetype) ===== */
+/* ===== Aurora design tokens ===== */
 :root {
-  --color-primary: #5b5bd6;        /* confident indigo accent */
-  --color-primary-dark: #4a4ac0;
-  --color-text: #0f1115;           /* near-black — also the hero/footer background */
-  --color-text-light: #6b7280;
-  --color-bg: #ffffff;
-  --color-bg-alt: #f4f4f5;
-  --color-border: #e5e7eb;
+  /* base (deep dark, never pure black) */
+  --bg: #07070d;
+  --bg-elev: #0e0e18;
+  --surface: rgba(255, 255, 255, 0.045);
+  --surface-2: rgba(255, 255, 255, 0.075);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
 
-  --font-display: var(--font-space), system-ui, sans-serif;  /* heavy headings */
-  --font-body: var(--font-inter), system-ui, sans-serif;     /* readable body */
+  /* text */
+  --fg: #ededf2;
+  --fg-muted: #9a9aad;
 
+  /* accents + aurora gradient */
+  --accent: #6366f1;
+  --accent-2: #22d3ee;
+  --accent-3: #ec4899;
+  --accent-glow: rgba(99, 102, 241, 0.35);
+  --grad: linear-gradient(100deg, #6366f1, #8b5cf6 38%, #22d3ee 72%, #ec4899);
+
+  --radius: 16px;
+  --radius-sm: 10px;
   --max-width: 1150px;
-  --radius: 4px;                   /* mostly sharp, poster feel */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 }
 
-/* ===== Base ===== */
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-text);
-  background: var(--color-bg);
-  line-height: 1.6;
+  color: var(--fg);
+  background: transparent;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
   font-family: var(--font-display);
   line-height: 1.05;
   letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+section { scroll-margin-top: 90px; }
 
-/* anchor targets clear the fixed header when smooth-scrolling */
-section {
-  scroll-margin-top: 84px;
-}
-
-/* reusable width wrapper */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+/* gradient text helper */
+.gradientText {
+  background: var(--grad);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: auroraText 10s ease infinite;
+}
+@keyframes auroraText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== Aurora background (fixed, behind everything) ===== */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(99, 102, 241, 0.10), transparent 60%),
+    var(--bg);
+}
+.aurora .blob {
+  position: absolute;
+  width: 46vw;
+  height: 46vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+.aurora .b1 {
+  background: radial-gradient(circle, #6366f1, transparent 70%);
+  top: -12%; left: -6%;
+  animation: drift1 18s var(--ease) infinite alternate;
+}
+.aurora .b2 {
+  background: radial-gradient(circle, #22d3ee, transparent 70%);
+  top: 14%; right: -12%;
+  animation: drift2 22s var(--ease) infinite alternate;
+}
+.aurora .b3 {
+  background: radial-gradient(circle, #ec4899, transparent 70%);
+  bottom: -18%; left: 22%;
+  opacity: 0.32;
+  animation: drift3 26s var(--ease) infinite alternate;
+}
+@keyframes drift1 { to { transform: translate(12vw, 8vh) scale(1.15); } }
+@keyframes drift2 { to { transform: translate(-10vw, 10vh) scale(1.1); } }
+@keyframes drift3 { to { transform: translate(8vw, -10vh) scale(1.2); } }
+
+/* ===== Scroll reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .aurora .blob { animation: none; }
+  .gradientText { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }

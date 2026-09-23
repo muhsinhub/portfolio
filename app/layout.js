@@ -1,10 +1,10 @@
-import { Space_Grotesk, Inter } from 'next/font/google'
+import { Outfit, Inter } from 'next/font/google'
 import '../styles/globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-// Heavy display face for headings, clean sans for body — exposed as CSS variables.
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' })
+// Geometric display face + clean body sans, exposed as CSS variables.
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata = {
@@ -14,8 +14,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
       <body>
+        {/* animated aurora backdrop */}
+        <div className="aurora" aria-hidden="true">
+          <span className="blob b1" />
+          <span className="blob b2" />
+          <span className="blob b3" />
+        </div>
         <Navbar />
         <main>{children}</main>
         <Footer />
