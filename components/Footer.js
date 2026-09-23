@@ -2,7 +2,6 @@ import styles from '../styles/Footer.module.css'
 
 const email = 'muhsinbrown1@gmail.com'
 const socials = [
-  { href: 'https://github.com/muhsinhub', label: 'GitHub' },
   { href: 'https://instagram.com/muhsinbrownn', label: 'Instagram' },
 ]
 

@@ -177,7 +177,6 @@ export default function Home() {
                 muhsinbrown1@gmail.com
               </a>
               <ul className={styles.contactSocials}>
-                <li><a href="https://github.com/muhsinhub" target="_blank" rel="noreferrer">GitHub</a></li>
                 <li><a href="https://instagram.com/muhsinbrownn" target="_blank" rel="noreferrer">Instagram</a></li>
               </ul>
             </div>
