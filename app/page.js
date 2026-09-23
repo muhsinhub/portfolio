@@ -58,6 +58,34 @@ const services = [
   },
 ]
 
+// ---- FAQ (adapted from a 21st.dev "FAQ 3" component into plain CSS + native <details>) ----
+const faqs = [
+  {
+    q: 'How much does a website cost?',
+    a: 'Every project is quoted after a short chat, since it depends on how many pages and features you need. I keep pricing realistic for small and local businesses.',
+  },
+  {
+    q: 'How long does it take to build?',
+    a: 'Most small-business sites go live in about one to two weeks, depending on how quickly we settle the content and photos.',
+  },
+  {
+    q: 'Do you get the site online for me?',
+    a: 'Yes. I deploy it to a real web address and keep it hosted, so you never have to touch the technical setup.',
+  },
+  {
+    q: 'Will it work on phones?',
+    a: 'Always. Every site is built mobile-first, so it looks sharp on phones, tablets and desktops.',
+  },
+  {
+    q: 'Can I update it later?',
+    a: 'Yes. I build clean, simple sites and can make changes — new photos, prices or pages — as your business grows.',
+  },
+  {
+    q: 'What do you need from me to start?',
+    a: 'Your business details, any logo or photos you have, and a rough idea of the pages you want. I handle the design and build from there.',
+  },
+]
+
 export default function Home() {
   return (
     <>
@@ -151,6 +179,27 @@ export default function Home() {
                 <h3 className={styles.serviceTitle}>{s.title}</h3>
                 <p className={styles.serviceText}>{s.text}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAQ (adapted from 21st.dev, restyled to plain CSS Modules) ===== */}
+      <section id="faq" className={styles.faq}>
+        <div className="container">
+          <div className={styles.sectionHead}>
+            <p className={styles.sectionKicker}>FAQ</p>
+            <h2 className={styles.sectionTitle}>Common questions</h2>
+          </div>
+          <div className={styles.faqList}>
+            {faqs.map((f) => (
+              <details key={f.q} className={styles.faqItem}>
+                <summary className={styles.faqQ}>
+                  <span>{f.q}</span>
+                  <span className={styles.faqIcon} aria-hidden="true">+</span>
+                </summary>
+                <p className={styles.faqA}>{f.a}</p>
+              </details>
             ))}
           </div>
         </div>
