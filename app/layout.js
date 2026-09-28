@@ -1,11 +1,11 @@
-import { Outfit, Inter } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import '../styles/globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-// Geometric display face + clean body sans, exposed as CSS variables.
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+// Geist — the same grotesk family the craft bar (Vercel) is built on.
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata = {
   title: 'brownbuilds — Web Developer',
@@ -14,14 +14,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body>
-        {/* animated aurora backdrop */}
-        <div className="aurora" aria-hidden="true">
-          <span className="blob b1" />
-          <span className="blob b2" />
-          <span className="blob b3" />
-        </div>
+        <div className="glow" aria-hidden="true" />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -1,9 +1,7 @@
 .footer {
   border-top: 1px solid var(--border);
-  background: rgba(7, 7, 13, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 4rem 0 2.5rem;
+  background: var(--bg);
+  padding: 4.5rem 0 2.5rem;
 }
 .inner {
   display: flex;
@@ -14,31 +12,30 @@
 }
 .wordmark {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  letter-spacing: -0.035em;
   color: var(--fg);
 }
+.dot { color: var(--accent); }
 .email {
-  font-size: 1.05rem;
-  color: var(--fg);
-  border-bottom: 2px solid var(--accent);
+  font-size: 1rem;
+  color: var(--fg-dim);
+  border-bottom: 1px solid var(--border-strong);
   padding-bottom: 2px;
-  transition: color 0.2s var(--ease);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.email:hover { color: var(--accent-2); }
+.email:hover { color: var(--accent); border-color: var(--accent); }
 .socials {
   display: flex;
   gap: 1.5rem;
   list-style: none;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 .socials a {
   color: var(--fg-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   transition: color 0.2s var(--ease);
 }
 .socials a:hover { color: var(--fg); }

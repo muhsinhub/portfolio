@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <p className={styles.wordmark}>
-          Let&rsquo;s build something<span className="gradientText">.</span>
+          Let&rsquo;s build something<span className={styles.dot}>.</span>
         </p>
         <a href={`mailto:${email}`} className={styles.email}>{email}</a>
         <ul className={styles.socials}>

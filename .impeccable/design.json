@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T00:00:00Z",
+  "title": "Design System: brownbuilds",
+  "extensions": {
+    "colorMeta": {
+      "signal-blue": { "role": "primary", "displayName": "Signal Blue", "canonical": "#3b82f6", "tonalRamp": ["#0b1c3a", "#122a54", "#183a74", "#1f4f9e", "#2f6ad0", "#3b82f6", "#5b9bff", "#a9c8ff"] },
+      "ink-black": { "role": "neutral", "displayName": "Ink Black", "canonical": "#08080a", "tonalRamp": ["#08080a", "#0d0d10", "#121216", "#16161b", "#232329", "#3a3a42", "#8a8a95", "#f4f4f6"] },
+      "status-green": { "role": "secondary", "displayName": "Status Green", "canonical": "#3ecf8e", "tonalRamp": ["#0c2a1e", "#123f2d", "#18543c", "#1f6f50", "#2b9a70", "#3ecf8e", "#78e0b1", "#b6efd6"] },
+      "status-amber": { "role": "secondary", "displayName": "Status Amber", "canonical": "#f0b24a", "tonalRamp": ["#3a2a0b", "#553d10", "#755318", "#9c6f1f", "#c78f2f", "#f0b24a", "#f6c97e", "#fbe1b5"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only." },
+      "heading": { "displayName": "Heading", "purpose": "Section titles." },
+      "body": { "displayName": "Body", "purpose": "All prose; measures capped ~54-64ch." },
+      "label": { "displayName": "Label / Mono", "purpose": "Status tags only (Geist Mono, uppercase)." }
+    },
+    "shadows": [
+      { "name": "accent-lift", "value": "0 6px 20px -6px rgba(59,130,246,0.5)", "purpose": "Under primary buttons and the nav CTA; deepens on hover." },
+      { "name": "card-hover", "value": "0 26px 50px -28px rgba(0,0,0,0.85)", "purpose": "Revealed only on work-card hover; soft offset+blur, no ambient rest shadow." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "The single easing for every transition and the scroll-reveal." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "860px" },
+      { "name": "sm", "value": "560px" },
+      { "name": "nav", "value": "820px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main call to action (See my work, Send message, Get in touch).",
+      "html": "<button class=\"ds-btn-primary\">See my work</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; background:#3b82f6; color:#fff; font-weight:500; font-size:0.98rem; padding:0.8rem 1.6rem; border:none; border-radius:999px; cursor:pointer; box-shadow:0 6px 20px -6px rgba(59,130,246,0.5); transition:background .2s cubic-bezier(0.22,1,0.36,1), transform .2s cubic-bezier(0.22,1,0.36,1), box-shadow .2s cubic-bezier(0.22,1,0.36,1); } .ds-btn-primary:hover { background:#5b9bff; transform:translateY(-2px); box-shadow:0 12px 30px -8px rgba(59,130,246,0.6); } .ds-btn-primary:focus-visible { outline:2px solid #3b82f6; outline-offset:3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The hero's secondary action; hairline-outlined, no fill.",
+      "html": "<button class=\"ds-btn-ghost\">Get in touch</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; padding:0.8rem 1.6rem; font-weight:500; font-size:0.98rem; color:#f4f4f6; background:transparent; border:1px solid rgba(255,255,255,0.16); border-radius:999px; cursor:pointer; transition:background .2s cubic-bezier(0.22,1,0.36,1), border-color .2s cubic-bezier(0.22,1,0.36,1); } .ds-btn-ghost:hover { background:#16161b; border-color:rgba(255,255,255,0.28); }"
+    },
+    {
+      "name": "Work Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A single deployed project: screenshot well + title + blurb + Visit-site link; the whole card is one link.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-card-thumb\"></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">Bella's Pizza</h3><p class=\"ds-card-text\">A cosy wood-fired pizzeria in a warm, appetising layout.</p><span class=\"ds-card-link\">Visit site ↗</span></div></a>",
+      "css": ".ds-card { display:flex; flex-direction:column; background:#0d0d10; border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; text-decoration:none; transition:transform .35s cubic-bezier(0.22,1,0.36,1), border-color .35s cubic-bezier(0.22,1,0.36,1), box-shadow .35s cubic-bezier(0.22,1,0.36,1); } .ds-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.16); box-shadow:0 26px 50px -28px rgba(0,0,0,0.85); } .ds-card-thumb { aspect-ratio:16/10; background:#121216; border-bottom:1px solid rgba(255,255,255,0.08); } .ds-card-body { padding:1.4rem 1.5rem 1.6rem; display:flex; flex-direction:column; gap:0.6rem; } .ds-card-title { font-family:Geist,system-ui,sans-serif; font-size:1.25rem; font-weight:600; letter-spacing:-0.02em; color:#f4f4f6; } .ds-card-text { color:#8a8a95; font-size:0.94rem; } .ds-card-link { color:#3b82f6; font-weight:500; font-size:0.92rem; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Contact form field with an Ink-Muted label above (no placeholder).",
+      "html": "<label class=\"ds-field\"><span>Email</span><input type=\"email\" /></label>",
+      "css": ".ds-field { display:flex; flex-direction:column; gap:0.4rem; } .ds-field span { font-size:0.8rem; font-weight:500; color:#8a8a95; } .ds-field input { font-family:Geist,system-ui,sans-serif; font-size:0.98rem; padding:0.72rem 0.85rem; border:1px solid rgba(255,255,255,0.08); border-radius:8px; background:#08080a; color:#f4f4f6; transition:border-color .18s cubic-bezier(0.22,1,0.36,1), box-shadow .18s cubic-bezier(0.22,1,0.36,1); } .ds-field input:focus { outline:none; border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,0.14); }"
+    },
+    {
+      "name": "Nav Bar",
+      "kind": "nav",
+      "refersTo": "nav-cta",
+      "description": "Fixed translucent top bar: lowercase wordmark, muted links, Signal-Blue CTA pill.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-logo\">brownbuilds<span>.</span></a><nav class=\"ds-nav-links\"><a>Work</a><a>About</a><a>Contact</a></nav><a class=\"ds-nav-cta\">Get in touch</a></header>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:1.5rem; padding:0.85rem 1.5rem; background:rgba(8,8,10,0.82); backdrop-filter:blur(12px) saturate(1.4); border-bottom:1px solid rgba(255,255,255,0.08); } .ds-nav-logo { font-family:Geist,system-ui,sans-serif; font-weight:600; font-size:1.08rem; letter-spacing:-0.03em; color:#f4f4f6; text-decoration:none; } .ds-nav-logo span { color:#3b82f6; } .ds-nav-links { margin-left:auto; display:flex; gap:1.9rem; } .ds-nav-links a { color:#8a8a95; font-size:0.9rem; text-decoration:none; transition:color .18s; } .ds-nav-links a:hover { color:#f4f4f6; } .ds-nav-cta { background:#3b82f6; color:#fff; font-weight:500; font-size:0.9rem; padding:0.5rem 1.05rem; border-radius:999px; text-decoration:none; box-shadow:0 4px 14px -4px rgba(59,130,246,0.5); }"
+    },
+    {
+      "name": "Status Tag",
+      "kind": "chip",
+      "refersTo": "card",
+      "description": "The 'In progress' marker on unfinished work; Geist Mono uppercase in Status Amber.",
+      "html": "<span class=\"ds-tag\">In progress</span>",
+      "css": ".ds-tag { font-family:'Geist Mono',ui-monospace,monospace; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:500; padding:0.24rem 0.55rem; border-radius:8px; color:#f0b24a; background:rgba(240,178,74,0.1); border:1px solid rgba(240,178,74,0.22); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Showroom",
+    "overview": "brownbuilds is a near-black room where the work is the light. The interface is deliberately quiet - deep ink ground, hairline edges, a single confident grotesk, and generous air - so the only saturated thing on screen is the work itself: real, deployed client sites shown at full brightness inside flat cards. The confidence comes from restraint, not effects. The register is calm and professional, benchmarked against Vercel-class product marketing, and it is an explicit rejection of the animated-aurora, glassmorphism, gradient-text default it replaced.",
+    "keyCharacteristics": [
+      "Near-black ground, never pure black; flat matte surfaces, never glass.",
+      "One restrained blue accent, used sparingly for action and emphasis.",
+      "Geist grotesk throughout; big, tightly-tracked headlines.",
+      "Hairline 1px borders and lots of air instead of boxes and shadows.",
+      "Client screenshots are the only rich colour on the page."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Signal Blue is the only decorative colour on the page. Green and amber appear only as status signals at a few pixels each. If a screen has more than one blue region competing for attention, one of them is wrong.", "section": "colors" },
+      { "name": "The No-Gradient Rule", "body": "Emphasis comes from weight, size, or the single flat accent - never from a gradient. Gradient text and multi-stop backgrounds are banned outright.", "section": "colors" },
+      { "name": "The Tight-Track Rule", "body": "Large type gets negative tracking (down to -0.04em on display); body stays near -0.01em. Headlines are set tight and confident, not airy.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. A shadow is a reaction (hover, action), never ambient furniture. Every shadow carries a real offset and blur - no zero-blur glows.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Signal Blue on <=10% of any screen; let the client screenshots be the colour.",
+      "Do convey depth with tonal layers and hairlines; reserve shadows for hover/action.",
+      "Do set headlines in Geist at 600 with tight negative tracking.",
+      "Do keep green and amber strictly as status signals, a few pixels each.",
+      "Do draw icons as single-stroke SVG."
+    ],
+    "donts": [
+      "Don't use gradient text or multi-stop gradient backgrounds anywhere.",
+      "Don't reintroduce glassmorphism, aurora blobs, or neon glow.",
+      "Don't put an eyebrow/kicker above a heading, or number sections 01/02/03.",
+      "Don't wrap content in same-size icon+title+text boxes as the page structure.",
+      "Don't add a second competing accent colour; the palette is one blue plus neutrals."
+    ]
+  }
+}

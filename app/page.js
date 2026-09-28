@@ -1,7 +1,7 @@
 import Reveal from '@/components/Reveal'
 import styles from './page.module.css'
 
-// ---- Featured work (tech tag removed per request; keep "In progress" on Accentuate) ----
+// ---- Featured work (tech tag intentionally omitted; "In progress" on Accentuate) ----
 const projects = [
   {
     title: "Bella's Pizza",
@@ -34,10 +34,10 @@ const projects = [
 ]
 
 const services = [
-  { n: '01', title: 'Custom website design', text: 'A site built around your business and brand — not a stock template everyone else is using.' },
-  { n: '02', title: 'Fast & mobile-first', text: 'Looks sharp on phones, tablets and desktops, and loads quickly so visitors never wait.' },
-  { n: '03', title: 'Launched & live', text: 'I handle getting it online with a real web address, hosted and ready for customers.' },
-  { n: '04', title: 'Easy to update', text: 'Clean, simple code so your menu, prices or photos can be refreshed as you grow.' },
+  { title: 'Custom website design', text: 'A site built around your business and brand — not a stock template everyone else is using.' },
+  { title: 'Fast & mobile-first', text: 'Looks sharp on phones, tablets and desktops, and loads quickly so visitors never wait.' },
+  { title: 'Launched & live', text: 'I handle getting it online with a real web address, hosted and ready for customers.' },
+  { title: 'Easy to update', text: 'Clean, simple code so your menu, prices or photos can be refreshed as you grow.' },
 ]
 
 const faqs = [
@@ -59,7 +59,7 @@ export default function Home() {
             <span className={styles.pulse} /> Available for new projects
           </span>
           <h1 className={styles.heroTitle}>
-            Fast, modern websites for <span className="gradientText">local businesses</span>.
+            Fast, modern websites for <span className={styles.accent}>local businesses</span>.
           </h1>
           <p className={styles.heroSub}>
             I design and build custom sites that make small businesses look established online —
@@ -67,7 +67,7 @@ export default function Home() {
           </p>
           <div className={styles.heroCtas}>
             <a href="#work" className={styles.btnPrimary}>See my work</a>
-            <a href="#contact" className={styles.btnGlass}>Get in touch</a>
+            <a href="#contact" className={styles.btnGhost}>Get in touch</a>
           </div>
         </div>
       </section>
@@ -76,26 +76,33 @@ export default function Home() {
       <section id="work" className={styles.section}>
         <div className="container">
           <Reveal className={styles.sectionHead}>
-            <p className={styles.kicker}>Selected work</p>
             <h2 className={styles.sectionTitle}>Sites I&rsquo;ve built</h2>
+            <p className={styles.sectionLede}>
+              Real, deployed projects — open any one and click through it.
+            </p>
           </Reveal>
           <div className={styles.workGrid}>
             {projects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80}>
-                <article className={styles.card}>
+              <Reveal key={p.title} delay={i * 70}>
+                <a className={styles.card} href={p.live} target="_blank" rel="noreferrer">
                   <div className={styles.thumb}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={p.image} alt={`${p.title} website`} loading="lazy" />
                   </div>
                   <div className={styles.cardBody}>
-                    {p.tag && <span className={styles.statusTag}>{p.tag}</span>}
-                    <h3 className={styles.cardTitle}>{p.title}</h3>
+                    <div className={styles.cardTop}>
+                      <h3 className={styles.cardTitle}>{p.title}</h3>
+                      {p.tag && <span className={styles.statusTag}>{p.tag}</span>}
+                    </div>
                     <p className={styles.cardText}>{p.blurb}</p>
-                    <a className={styles.cardLink} href={p.live} target="_blank" rel="noreferrer">
-                      Visit site &rarr;
-                    </a>
+                    <span className={styles.cardLink}>
+                      Visit site
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5M10.5 3.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
                   </div>
-                </article>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -105,8 +112,7 @@ export default function Home() {
       {/* ===== About ===== */}
       <section id="about" className={styles.section}>
         <div className="container">
-          <Reveal className={styles.aboutCard}>
-            <p className={styles.kicker}>About</p>
+          <Reveal className={styles.aboutBlock}>
             <p className={styles.aboutLead}>
               I&rsquo;m a front-end developer who builds clean, fast websites for local and small
               businesses — sites that load quickly, look great on any screen, and are easy for
@@ -124,14 +130,12 @@ export default function Home() {
       <section id="services" className={styles.section}>
         <div className="container">
           <Reveal className={styles.sectionHead}>
-            <p className={styles.kicker}>What I do</p>
             <h2 className={styles.sectionTitle}>How I can help</h2>
           </Reveal>
-          <div className={styles.servicesGrid}>
+          <div className={styles.serviceList}>
             {services.map((s, i) => (
-              <Reveal key={s.n} delay={i * 70}>
-                <div className={styles.service}>
-                  <span className={styles.serviceNum}>{s.n}</span>
+              <Reveal key={s.title} delay={i * 60}>
+                <div className={styles.serviceRow}>
                   <h3 className={styles.serviceTitle}>{s.title}</h3>
                   <p className={styles.serviceText}>{s.text}</p>
                 </div>
@@ -145,7 +149,6 @@ export default function Home() {
       <section id="faq" className={styles.section}>
         <div className="container">
           <Reveal className={styles.sectionHead}>
-            <p className={styles.kicker}>FAQ</p>
             <h2 className={styles.sectionTitle}>Common questions</h2>
           </Reveal>
           <Reveal className={styles.faqList}>
@@ -153,7 +156,11 @@ export default function Home() {
               <details key={f.q} className={styles.faqItem}>
                 <summary className={styles.faqQ}>
                   <span>{f.q}</span>
-                  <span className={styles.faqIcon} aria-hidden="true">+</span>
+                  <span className={styles.faqIcon} aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                      <path d="M7.5 2v11M2 7.5h11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </span>
                 </summary>
                 <p className={styles.faqA}>{f.a}</p>
               </details>
@@ -167,7 +174,6 @@ export default function Home() {
         <div className="container">
           <Reveal className={styles.contactCard}>
             <div className={styles.contactInfo}>
-              <p className={styles.kicker}>Contact</p>
               <h2 className={styles.sectionTitle}>Let&rsquo;s build something.</h2>
               <p className={styles.contactText}>
                 Have a business that needs a website? Tell me a little about it and I&rsquo;ll get
