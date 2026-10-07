@@ -1,11 +1,17 @@
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Barlow_Condensed, JetBrains_Mono } from 'next/font/google'
 import '../styles/globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
-// Geist — the same grotesk family the craft bar (Vercel) is built on.
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+// Bold condensed display + monospace meta — the arcade/terminal voice.
+const display = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-barlow',
+})
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-jet',
+})
 
 export const metadata = {
   title: 'brownbuilds — Web Developer',
@@ -14,13 +20,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
-      <body>
-        <div className="glow" aria-hidden="true" />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+    <html lang="en" className={`${display.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
   )
 }
