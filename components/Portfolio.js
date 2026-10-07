@@ -328,11 +328,9 @@ function Work({ openCard, setOpenCard, sfx }) {
               <a
                 className={styles.btnPrimary}
                 href={open.live}
-                target="_blank"
-                rel="noreferrer"
                 onMouseEnter={() => sfx('hover')}
               >
-                Visit site ↗
+                Visit site →
               </a>
             </div>
           </div>
