@@ -1,253 +1,229 @@
 ---
 name: brownbuilds
-description: A refined dark-modern portfolio that pitches a solo developer's real, deployed small-business sites.
+description: A neon arcade-console portfolio — a numbered sidebar shell on deep navy, driven by one cyan accent.
 colors:
-  ink-black: "#08080a"
-  surface-black: "#0d0d10"
-  surface-raised: "#121216"
-  surface-hover: "#16161b"
-  hairline: "rgba(255,255,255,0.08)"
-  hairline-strong: "rgba(255,255,255,0.16)"
-  ink: "#f4f4f6"
-  ink-dim: "#b4b4be"
-  ink-muted: "#8a8a95"
-  signal-blue: "#3b82f6"
-  signal-blue-hover: "#5b9bff"
-  status-green: "#3ecf8e"
-  status-amber: "#f0b24a"
+  navy-base: "#03152f"
+  navy-panel: "#061d3d"
+  navy-raised: "#0a2850"
+  navy-sink: "#020e20"
+  cyan: "#16d7ff"
+  line: "rgba(22,215,255,0.18)"
+  line-soft: "rgba(255,255,255,0.07)"
+  ink: "#e8f3ff"
+  ink-dim: "#9ab4d4"
+  ink-mute: "#6a85a8"
 typography:
   display:
-    fontFamily: "Geist, system-ui, sans-serif"
-    fontSize: "clamp(2.7rem, 7.5vw, 5rem)"
-    fontWeight: 600
-    lineHeight: 1.02
-    letterSpacing: "-0.04em"
+    fontFamily: "Barlow Condensed, 'Arial Narrow', sans-serif"
+    fontSize: "clamp(2.8rem, 6.5vw, 5.2rem)"
+    fontWeight: 700
+    lineHeight: 0.98
+    letterSpacing: "0.01em"
   heading:
-    fontFamily: "Geist, system-ui, sans-serif"
-    fontSize: "clamp(1.9rem, 4vw, 2.7rem)"
-    fontWeight: 600
-    lineHeight: 1.04
-    letterSpacing: "-0.035em"
+    fontFamily: "Barlow Condensed, 'Arial Narrow', sans-serif"
+    fontSize: "clamp(2.2rem, 5vw, 3.4rem)"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "0.01em"
   body:
-    fontFamily: "Geist, system-ui, sans-serif"
-    fontSize: "1rem"
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontSize: "0.92rem"
     fontWeight: 400
-    lineHeight: 1.6
-    letterSpacing: "-0.011em"
+    lineHeight: 1.65
+    letterSpacing: "0"
   label:
-    fontFamily: "Geist Mono, ui-monospace, monospace"
-    fontSize: "0.66rem"
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontSize: "0.72rem"
     fontWeight: 500
-    letterSpacing: "0.05em"
+    letterSpacing: "0.18em"
 rounded:
-  sm: "8px"
-  md: "12px"
-  pill: "999px"
+  none: "0"
+  cut: "14px"
 spacing:
   sm: "8px"
   md: "16px"
   lg: "24px"
-  section: "112px"
 components:
   button-primary:
-    backgroundColor: "{colors.signal-blue}"
-    textColor: "#ffffff"
-    rounded: "{rounded.pill}"
-    padding: "0.8rem 1.6rem"
-  button-primary-hover:
-    backgroundColor: "{colors.signal-blue-hover}"
+    backgroundColor: "{colors.cyan}"
+    textColor: "{colors.navy-base}"
+    rounded: "{rounded.none}"
+    padding: "0.62rem 1.4rem"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "0.8rem 1.6rem"
+    rounded: "{rounded.none}"
+    padding: "0.62rem 1.4rem"
+  nav-item:
+    backgroundColor: "transparent"
+    textColor: "{colors.ink-dim}"
+    rounded: "{rounded.none}"
+    padding: "0.6rem 0.7rem"
+  nav-item-active:
+    backgroundColor: "{colors.cyan}"
+    textColor: "{colors.navy-base}"
   card:
-    backgroundColor: "{colors.surface-black}"
-    rounded: "{rounded.md}"
-    padding: "1.4rem 1.5rem 1.6rem"
-  input:
-    backgroundColor: "{colors.ink-black}"
+    backgroundColor: "{colors.navy-panel}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "0.72rem 0.85rem"
-  nav-cta:
-    backgroundColor: "{colors.signal-blue}"
-    textColor: "#ffffff"
-    rounded: "{rounded.pill}"
-    padding: "0.5rem 1.05rem"
+    rounded: "{rounded.none}"
+    padding: "1rem"
+  input:
+    backgroundColor: "{colors.navy-sink}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "0.7rem 0.8rem"
 ---
 
 # Design System: brownbuilds
 
 ## Overview
 
-**Creative North Star: "The Night Showroom"**
+**Creative North Star: "The Arcade Console"**
 
-brownbuilds is a near-black room where the work is the light. The interface is
-deliberately quiet — deep ink ground, hairline edges, a single confident
-grotesk, and generous air — so the only saturated thing on screen is the work
-itself: real, deployed client sites shown at full brightness inside flat cards.
-The confidence comes from restraint, not effects. Nothing glows, nothing
-gradients, nothing drifts.
+brownbuilds is a numbered control console on a deep-navy screen. The whole site
+is a single app-shell: a fixed left sidebar of 01–06 section switches, a central
+stage that wipes from one panel to the next, a live clock and a scrolling status
+ticker. It reads like the operator panel of an arcade cabinet — bold condensed
+caps, monospace readouts, sharp clip-cut corners, and a single electric-cyan
+signal that lights whatever is active.
 
-The register is calm and professional, benchmarked against Vercel-class product
-marketing: high contrast, precise type, decisive whitespace, and motion used
-once and gently rather than scattered everywhere. It is a pitch surface for a
-skeptical small-business owner, so every element earns trust by being plain and
-exact — proof by artifact, not by adjectives.
+The energy is deliberate and playful, but disciplined: one accent, not a
+rainbow. Cyan carries every live/active/interactive cue; everything else is navy
+and cool-grey ink. The client screenshots inside the arcana grid are the only
+other colour on screen, which keeps the work itself the brightest thing.
 
-This world is an explicit rejection of the "creative developer" default it
-replaced: animated aurora blobs, glassmorphism, multi-hue gradient text, and
-neon glow. Those read as decoration; this reads as a studio.
+It is driven as much by keyboard as mouse (arrows, 1–6, Enter, Esc), narrates
+its own state (clock, ticker, availability dot), and offers an opt-in Web Audio
+SFX layer — all of it honouring `prefers-reduced-motion`.
 
 **Key Characteristics:**
-- Near-black ground, never pure black; flat matte surfaces, never glass.
-- One restrained blue accent, used sparingly for action and emphasis.
-- Geist grotesk throughout; big, tightly-tracked headlines.
-- Hairline 1px borders and lots of air instead of boxes and shadows.
-- Client screenshots are the only rich colour on the page.
+- Deep-navy ground (#03152f) with one electric-cyan accent (#16d7ff) — no second accent.
+- Sidebar app-shell: numbered 01–06 switches, central stage, ticker + clock.
+- Barlow Condensed display caps + JetBrains Mono for all body and meta.
+- Sharp corners with a 14px clip-cut on cards, buttons, nav items and panels.
+- Panels enter with a cyan wipe; motion is scripted, not scattered.
 
 ## Colors
 
-A monochrome dark palette carried almost entirely by one ink and one accent; the
-work supplies the rest.
+A two-tone system: a stack of navies for depth and a single cyan for everything live.
 
 ### Primary
-- **Signal Blue** (#3b82f6): the single accent. Primary buttons, the nav CTA, the
-  emphasised phrase in the hero headline, card "Visit site" links, FAQ open-state
-  icon, and focus rings. Used on a small fraction of any screen — its rarity is
-  the point.
-- **Signal Blue Hover** (#5b9bff): the lift on hover for accent surfaces only.
-
-### Secondary
-- **Status Green** (#3ecf8e): reserved for the "Available for new projects"
-  presence dot. A functional status colour, never decoration.
-- **Status Amber** (#f0b24a): reserved for the "In progress" project tag. A
-  functional status colour, never decoration.
+- **Cyan** (#16d7ff): the one accent. Active sidebar switch fill, the emphasised
+  hero word, every card's top rule, service numbers, the FAQ toggle, the clock,
+  the caret, the ticker, button fills, focus states, and all hover glows.
 
 ### Neutral
-- **Ink Black** (#08080a): the page ground and input fields.
-- **Surface Black** (#0d0d10): flat card and panel fills, one step above ground.
-- **Surface Raised** (#121216) / **Surface Hover** (#16161b): thumbnail wells and
-  ghost-button hover.
-- **Ink** (#f4f4f6): primary text and headings.
-- **Ink Dim** (#b4b4be): lead paragraphs and hero sub-copy.
-- **Ink Muted** (#8a8a95): secondary body, captions, nav links at rest, form labels.
-- **Hairline** (rgba(255,255,255,0.08)) / **Hairline Strong** (rgba(255,255,255,0.16)):
-  all borders and dividers.
+- **Navy Base** (#03152f): the page ground.
+- **Navy Panel** (#061d3d): cards, the profile/panel fills, the sidebar top.
+- **Navy Raised** (#0a2850) / **Navy Sink** (#020e20): subtle elevation and the
+  deepest wells (inputs, thumbnails, sidebar base).
+- **Ink** (#e8f3ff): primary text and headings.
+- **Ink Dim** (#9ab4d4): body copy, leads, the muted "SECTION 0x / 06" label.
+- **Ink Mute** (#6a85a8): quietest meta and numeric labels.
+- **Line** (rgba(22,215,255,0.18)) / **Line-soft** (rgba(255,255,255,0.07)):
+  cyan-tinted hairlines and neutral dividers.
 
-**The One Voice Rule.** Signal Blue is the only decorative colour on the page.
-Green and amber appear only as status signals at a few pixels each. If a screen
-has more than one blue region competing for attention, one of them is wrong.
+**The One Signal Rule.** Cyan is the only colour on the interface; it always
+means "live / active / here." Reserved neon hues (pink, violet, lime, amber) still
+exist as tokens but are intentionally unused — do not reintroduce a per-card
+rainbow. If two cyan elements fight for the eye, one is wrong.
 
-**The No-Gradient Rule.** Emphasis comes from weight, size, or the single flat
-accent — never from a gradient. Gradient text and multi-stop backgrounds are
-banned outright.
+**The Work-Is-The-Colour Rule.** The only non-cyan colour on screen is the real
+client screenshots inside the arcana grid. Keep it that way.
 
 ## Typography
 
-**Display Font:** Geist (with system-ui fallback)
-**Body Font:** Geist
-**Label/Mono Font:** Geist Mono (status tags only)
+**Display Font:** Barlow Condensed (with Arial Narrow fallback)
+**Body / Meta Font:** JetBrains Mono (with ui-monospace fallback)
 
-**Character:** Geist is a precise, neutral grotesk with a slightly technical edge
-— the same family the craft bar (Vercel) is built on. One family across display
-and body keeps the voice unified; only measurement-like status tags switch to the
-mono cut.
+**Character:** A bold condensed grotesk shouts the headlines and section titles in
+uppercase; a monospace carries every paragraph, label, number and ticker. The
+condensed-caps + mono pairing is the arcade-console voice — one loud, one technical.
 
 ### Hierarchy
-- **Display** (600, clamp(2.7rem–5rem), 1.02, -0.04em): the hero headline only.
-- **Heading** (600, clamp(1.9rem–2.7rem), 1.04, -0.035em): section titles.
-- **Title** (600, ~1.25rem, -0.02em): card and service titles.
-- **Body** (400, 1rem, 1.6, -0.011em): all prose; measures capped ~54–64ch.
-- **Label** (500, 0.66rem, +0.05em, uppercase, Geist Mono): status tags only.
+- **Display** (700, clamp 2.8–5.2rem, uppercase): the Intro headline.
+- **Heading** (700, clamp 2.2–3.4rem, uppercase): per-panel titles.
+- **Title** (600–700, ~1.35rem, uppercase): card and service names.
+- **Body** (400, ~0.92rem, 1.65, JetBrains Mono): all prose.
+- **Label** (500, 0.72rem, +0.18em tracking, JetBrains Mono): kickers, meta, ticker, toggles.
 
-**The Tight-Track Rule.** Large type gets negative tracking (down to -0.04em on
-display); body stays near -0.01em. Headlines are set tight and confident, not airy.
+**The Mono-Readout Rule.** Anything that reads like data — section counter, clock,
+status, field labels, hints — is monospace with wide tracking. Prose is mono too;
+only the display and titles switch to condensed caps.
 
 ## Layout
 
-A single centred column, max-width 1080px, 1.5rem side gutters. Sections breathe
-at ~112px vertical rhythm (7rem), tightening to ~80px under 560px. The hero fills
-~88vh and is vertically centred. Work is a two-column card grid (collapsing to one
-column ≤860px); Services is a two-column title|description list separated by
-hairlines (stacking ≤860px); FAQ and About are single measured columns; Contact is
-a two-column info|form card (stacking ≤860px). More space sits above a heading than
-below it. No fixed-pixel grids — columns are fluid `1fr` tracks.
+A two-pane app-shell at 100dvh. A 264px left sidebar (brand, 01–06 nav, status
+footer) sits beside a content column of three stacked bands: a scrolling ticker,
+a scrollable stage (max-width 1040px, centred), and a keyboard-hint footer. Only
+the stage scrolls. Below 880px the sidebar becomes a horizontal top bar with a
+scrollable number row (labels hidden) and the content stacks beneath; grids drop
+to one column below 680px. Work and Services are two-column grids; Intro, About,
+FAQ and Contact are single measured columns.
 
 ## Elevation & Depth
 
-Flat by default. Depth is conveyed through tonal layering (ground → surface →
-raised) and hairline borders, not resting shadows. Shadows appear only as a
-response to state or to lift the accent.
+Flat navy layering, lit by cyan. Depth comes from the navy stack (base → panel →
+raised → sink) and cyan-tinted hairlines, not resting shadows. Glow is reserved
+for state: a card lifts with a cyan-tinted drop shadow on hover, the detail modal
+sits in a cyan halo, and active text carries a soft cyan text-shadow.
 
 ### Shadow Vocabulary
-- **Accent lift** (`box-shadow: 0 6px 20px -6px rgba(59,130,246,0.5)`): under
-  primary buttons and the nav CTA; intensifies on hover.
-- **Card hover** (`box-shadow: 0 26px 50px -28px rgba(0,0,0,0.85)`): a soft,
-  offset, blurred shadow revealed only when a work card is hovered.
+- **Card hover** (`box-shadow: 0 14px 40px -18px var(--acc)`): cyan-tinted lift on an arcana card.
+- **Accent glow** (`box-shadow: 0 0 20px -4px rgba(22,215,255,0.55)`): under primary buttons; intensifies on hover.
+- **Modal halo** (`box-shadow: 0 0 60px -10px var(--acc)`): the card-detail dialog.
 
-**The Flat-By-Default Rule.** Surfaces are flat at rest. A shadow is a reaction
-(hover, action), never ambient furniture. Every shadow carries a real offset and
-blur — no zero-blur glows.
+**The Glow-Is-A-State Rule.** Surfaces are flat at rest; a cyan glow only appears
+on hover, focus or an open dialog — never as ambient decoration.
 
 ## Shapes
 
-Gentle, consistent corners: 12px on cards, panels, and inputs (8px on small
-controls), full pills (999px) on buttons and the availability badge. Borders are
-always a single 1px hairline on all four sides — never a coloured or thick
-one-sided accent border. Icons are drawn SVG in a single 1.5px stroke (the card
-arrow, the FAQ plus/close). No clip-path silhouettes, no decorative masks.
+Sharp-edged with a signature **clip-cut**: a 14px chamfer on the top-right and
+bottom-left corners (`clip-path` polygon), applied to cards, buttons, nav items,
+panels, the avatar and the detail modal. Borders are single 1px cyan-tinted
+hairlines. Because the clip hides outlines, keyboard focus uses an inset 2px ring
+instead. No border-radius anywhere.
 
 ## Components
 
 ### Buttons
-- **Shape:** full pill (999px).
-- **Primary:** Signal Blue fill, white text, padding 0.8rem 1.6rem, accent-lift
-  shadow.
-- **Hover / Focus:** brightens to Signal Blue Hover, rises 2px, shadow deepens;
-  focus-visible shows a 2px Signal Blue ring at 3px offset.
-- **Ghost:** transparent fill, Ink text, 1px Hairline-Strong border; hover fills
-  Surface Hover and brightens the border. Used as the hero's secondary action.
+- **Shape:** clip-cut rectangle (no radius), condensed uppercase label.
+- **Primary:** cyan fill, navy text, cyan glow; hover lifts 2px and deepens the glow.
+- **Ghost:** transparent, ink text, dim hairline; hover border and text go cyan.
 
-### Cards / Containers
-- **Corner Style:** 12px.
-- **Background:** Surface Black with a Hairline border; thumbnail well is Surface
-  Raised with a Hairline bottom divider.
-- **Shadow Strategy:** flat at rest; Card-hover shadow + Hairline-Strong border +
-  4px rise on hover; the whole card is a single link and the screenshot scales 1.035×.
-- **Internal Padding:** 1.4rem 1.5rem 1.6rem on the body.
+### Sidebar nav (signature)
+- 01–06 switches: mono number + condensed-caps label, clip-cut. Hover tints cyan;
+  the active switch fills solid cyan with navy text. Drives the stage via click,
+  arrows, or number keys.
+
+### Cards (arcana grid)
+- Clip-cut navy-panel cards with a cyan top rule and hairline border; the real
+  project screenshot sits in a navy-sink well. Hover lifts with a cyan shadow and
+  cyan border. Click opens a centred detail modal (cyan halo) with the screenshot,
+  blurb and a "Visit site →" button.
 
 ### Inputs / Fields
-- **Style:** Ink Black fill, 1px Hairline border, 8px radius, Geist body.
-- **Focus:** border shifts to Signal Blue with a 3px Signal-Blue-soft ring; no glow.
-- **Labels:** small Ink Muted text above each field (not placeholders).
+- Navy-sink fill, 1px hairline, mono text, mono uppercase label above. Focus shifts
+  the border to cyan with a soft cyan ring. No radius.
 
-### Navigation
-- **Style:** fixed, translucent Ink-Black bar with a functional 12px backdrop
-  blur; gains a Hairline bottom border once scrolled.
-- **Typography:** lowercase Geist wordmark with a Signal-Blue period; Ink Muted
-  links brightening to Ink on hover; a Signal Blue pill CTA.
-- **Mobile:** links collapse into a hamburger that opens a near-opaque full-screen
-  overlay with large centred Geist links.
+### FAQ
+- Hairline-divided `<details>`; condensed-caps question, cyan `+` that rotates to `×` when open.
 
-### Status Tag (signature)
-Small Geist Mono uppercase pill in Status Amber at ~10% opacity fill with a
-matching hairline — the "In progress" marker on unfinished work. The availability
-badge pairs an Ink-Dim label with a pulsing Status Green dot.
+### Status furniture
+- Pulsing cyan availability dot, cyan monospace live clock, and a cyan scrolling
+  ticker of status phrases. An opt-in `SFX ◻/◼` toggle gates a Web Audio hover/select layer.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep Signal Blue on ≤10% of any screen; let the client screenshots be the colour.
-- **Do** convey depth with tonal layers and hairlines; reserve shadows for hover/action.
-- **Do** set headlines in Geist at 600 with tight negative tracking.
-- **Do** keep green and amber strictly as status signals, a few pixels each.
-- **Do** draw icons as single-stroke SVG.
+- **Do** keep cyan as the only interface colour; let the client screenshots be the rest.
+- **Do** use the 14px clip-cut consistently on cards, buttons, nav items and panels.
+- **Do** set headlines and titles in Barlow Condensed uppercase; everything else in JetBrains Mono.
+- **Do** reserve glow for hover / focus / open states.
+- **Do** honour `prefers-reduced-motion` — wipes, blink, pulse and ticker all stop.
 
 ### Don't:
-- **Don't** use gradient text or multi-stop gradient backgrounds anywhere.
-- **Don't** reintroduce glassmorphism, aurora blobs, or neon glow.
-- **Don't** put an eyebrow/kicker above a heading, or number sections 01/02/03.
-- **Don't** wrap content in same-size icon+title+text boxes as the page structure.
-- **Don't** add a second competing accent colour; the palette is one blue plus neutrals.
+- **Don't** reintroduce the per-card rainbow (pink / violet / lime / amber accents).
+- **Don't** add border-radius; corners are sharp or clip-cut.
+- **Don't** let a second colour compete with cyan for "active/live."
+- **Don't** make the SFX layer play by default — it stays opt-in.
