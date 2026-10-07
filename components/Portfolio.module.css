@@ -37,7 +37,7 @@
   align-items: baseline;
 }
 .brandAccent { color: var(--cyan); text-shadow: 0 0 14px var(--glow-cyan); }
-.caret { color: var(--pink); animation: blink 1.1s steps(1) infinite; margin-left: 2px; }
+.caret { color: var(--cyan); animation: blink 1.1s steps(1) infinite; margin-left: 2px; }
 @keyframes blink { 50% { opacity: 0; } }
 
 .nav { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -92,8 +92,8 @@
 .status { display: inline-flex; align-items: center; gap: 0.5rem; letter-spacing: 0.12em; }
 .dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--lime);
-  box-shadow: 0 0 10px var(--lime);
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
   animation: pulse 2.2s var(--ease) infinite;
 }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
@@ -181,7 +181,7 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.22em;
-  color: var(--pink);
+  color: var(--fg-dim);
 }
 .panelTitle {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -363,8 +363,8 @@
   font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--amber);
-  border: 1px solid rgba(255, 207, 79, 0.4);
+  color: var(--fg-dim);
+  border: 1px solid var(--line);
   padding: 0.18rem 0.45rem;
 }
 

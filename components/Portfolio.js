@@ -6,7 +6,8 @@ import styles from './Portfolio.module.css'
 /* ---- content (unchanged info, new layout) ---- */
 const SECTIONS = ['Intro', 'Work', 'About', 'Services', 'FAQ', 'Contact']
 
-const accents = ['var(--cyan)', 'var(--pink)', 'var(--violet)', 'var(--lime)']
+// Single accent across the whole site — one blue, used everywhere.
+const accents = ['var(--cyan)', 'var(--cyan)', 'var(--cyan)', 'var(--cyan)']
 
 const projects = [
   {
