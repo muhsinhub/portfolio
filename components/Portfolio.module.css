@@ -242,10 +242,8 @@
 
 /* ===================== Intro ===================== */
 .intro {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 2.5rem;
-  align-items: start;
+  display: block;
+  max-width: 900px;
 }
 .introTitle {
   font-size: clamp(2.8rem, 6.5vw, 5.2rem);

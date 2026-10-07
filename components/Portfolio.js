@@ -264,23 +264,6 @@ function Intro({ go, sfx }) {
           </button>
         </div>
       </div>
-
-      <aside className={styles.profile}>
-        <div className={styles.avatar} aria-hidden="true">
-          <span>bb</span>
-        </div>
-        <div className={styles.profileCaption}>WEB DEVELOPER</div>
-        <p className={styles.profileBio}>
-          I&rsquo;m a front-end developer who builds clean, fast websites for local and small
-          businesses — sites that load quickly, look great on any screen, and are easy for
-          customers to use.
-        </p>
-        <dl className={styles.meta}>
-          <div><dt>Builds</dt><dd>4 live</dd></div>
-          <div><dt>Stack</dt><dd>Next.js</dd></div>
-          <div><dt>Status</dt><dd className={styles.metaOk}>Open</dd></div>
-        </dl>
-      </aside>
     </div>
   )
 }
