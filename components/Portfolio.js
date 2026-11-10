@@ -216,17 +216,6 @@ export default function Portfolio() {
     <div className={styles.shell}>
       {/* ---------------- Sticky top bar ---------------- */}
       <header className={styles.topbar}>
-        <div className={styles.ticker} aria-hidden="true">
-          <div className={styles.tickerTrack}>
-            {Array.from({ length: 2 }).map((_, k) => (
-              <span key={k}>
-                AVAILABLE FOR NEW PROJECTS&nbsp;&nbsp;◦&nbsp;&nbsp;REAL WEBSITES FOR LOCAL
-                BUSINESSES&nbsp;&nbsp;◦&nbsp;&nbsp;LIVE AND HOSTED IN A WEEK OR TWO&nbsp;&nbsp;◦&nbsp;&nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
-
         <div className={styles.bar}>
           <a
             href="#intro"
