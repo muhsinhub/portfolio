@@ -1,8 +1,18 @@
 /* ===================== Shell ===================== */
 .shell {
   --bar-h: 4rem; /* top bar height, used for scroll offsets */
+  position: relative;
+  z-index: 1; /* above the starfield */
   min-height: 100dvh;
   width: 100%;
+}
+
+/* fixed animated canvas behind all content */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ===================== Sticky top bar ===================== */
