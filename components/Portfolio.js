@@ -4,7 +4,14 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './Portfolio.module.css'
 
 /* ---- content (unchanged info, new layout) ---- */
-const SECTIONS = ['Intro', 'Work', 'About', 'Services', 'FAQ', 'Contact']
+// One section per screen. Services and FAQ live as tabs inside About.
+const SECTIONS = [
+  { id: 'intro', label: 'Intro' },
+  { id: 'work', label: 'Work' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
+]
+const ABOUT_TABS = ['About', 'Services', 'FAQ']
 
 // Single accent across the whole site — one blue, used everywhere.
 const accents = ['var(--cyan)', 'var(--cyan)', 'var(--cyan)', 'var(--cyan)']
@@ -58,6 +65,8 @@ const faqs = [
 
 export default function Portfolio() {
   const [active, setActive] = useState(0)
+  const [seen, setSeen] = useState(() => new Set([0]))
+  const [menuOpen, setMenuOpen] = useState(false)
   const [openCard, setOpenCard] = useState(null)
   const [sound, setSound] = useState(false)
   const [clock, setClock] = useState('')
@@ -107,12 +116,42 @@ export default function Portfolio() {
     } catch (_) { /* audio unavailable — ignore */ }
   }, [])
 
+  /* highlight the section crossing the middle of the viewport */
+  useEffect(() => {
+    const els = SECTIONS.map((s) => document.getElementById(s.id)).filter(Boolean)
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return
+          setActive(SECTIONS.findIndex((s) => s.id === e.target.id))
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    )
+    /* play the signature wipe the first time a section scrolls into view */
+    const reveal = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return
+          const i = SECTIONS.findIndex((s) => s.id === e.target.id)
+          setSeen((prev) => (prev.has(i) ? prev : new Set(prev).add(i)))
+        })
+      },
+      { threshold: 0.15 }
+    )
+    els.forEach((el) => { io.observe(el); reveal.observe(el) })
+    return () => { io.disconnect(); reveal.disconnect() }
+  }, [])
+
+  /* scroll to a section (CSS scroll-behavior makes it smooth, honours reduced motion) */
   const go = useCallback((i) => {
-    setActive((prev) => {
-      const next = (i + SECTIONS.length) % SECTIONS.length
-      if (next !== prev) { setOpenCard(null); sfx('select') }
-      return next
-    })
+    const next = (i + SECTIONS.length) % SECTIONS.length
+    const el = document.getElementById(SECTIONS[next].id)
+    if (!el) return
+    setMenuOpen(false)
+    sfx('select')
+    el.scrollIntoView({ block: 'start' })
+    history.replaceState(null, '', `#${SECTIONS[next].id}`)
   }, [sfx])
 
   const toggleSound = () => {
@@ -131,68 +170,52 @@ export default function Portfolio() {
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return
       if (e.key === 'Escape') {
         if (openCard !== null) { setOpenCard(null); sfx('select') }
+        else if (menuOpen) setMenuOpen(false)
         else go(0)
+      } else if (openCard !== null) {
+        return
       } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault(); go(active + 1)
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault(); go(active - 1)
-      } else if (/^[1-6]$/.test(e.key)) {
+      } else if (/^[1-4]$/.test(e.key)) {
         go(parseInt(e.key, 10) - 1)
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [active, openCard, go, sfx])
+  }, [active, openCard, menuOpen, go, sfx])
+
+  const navLinks = (
+    <>
+      {SECTIONS.map((s, i) => (
+        <a
+          key={s.id}
+          href={`#${s.id}`}
+          className={`${styles.navItem} ${i === active ? styles.navActive : ''}`}
+          style={{ '--i-accent': accents[i % accents.length] }}
+          onClick={(e) => { e.preventDefault(); go(i) }}
+          onMouseEnter={() => sfx('hover')}
+          aria-current={i === active ? 'true' : undefined}
+        >
+          <span className={styles.navNum}>{String(i + 1).padStart(2, '0')}</span>
+          <span className={styles.navLabel}>{s.label}</span>
+        </a>
+      ))}
+    </>
+  )
+
+  const panels = [
+    <Intro key="intro" go={go} sfx={sfx} />,
+    <Work key="work" openCard={openCard} setOpenCard={setOpenCard} sfx={sfx} />,
+    <About key="about" sfx={sfx} />,
+    <Contact key="contact" sfx={sfx} />,
+  ]
 
   return (
     <div className={styles.shell}>
-      {/* ---------------- Sidebar ---------------- */}
-      <aside className={styles.sidebar}>
-        <a
-          href="#"
-          className={styles.brand}
-          onClick={(e) => { e.preventDefault(); go(0) }}
-          onMouseEnter={() => sfx('hover')}
-        >
-          brown<span className={styles.brandAccent}>builds</span>
-          <span className={styles.caret}>_</span>
-        </a>
-
-        <nav className={styles.nav} aria-label="Sections">
-          {SECTIONS.map((label, i) => (
-            <button
-              key={label}
-              className={`${styles.navItem} ${i === active ? styles.navActive : ''}`}
-              style={{ '--i-accent': accents[i % accents.length] }}
-              onClick={() => go(i)}
-              onMouseEnter={() => sfx('hover')}
-              aria-current={i === active ? 'page' : undefined}
-            >
-              <span className={styles.navNum}>{String(i + 1).padStart(2, '0')}</span>
-              <span className={styles.navLabel}>{label}</span>
-            </button>
-          ))}
-        </nav>
-
-        <div className={styles.sideFoot}>
-          <div className={styles.status}>
-            <span className={styles.dot} aria-hidden="true" />
-            <span>AVAILABLE</span>
-          </div>
-          <div className={styles.clock}>{clock}</div>
-          <button
-            className={styles.sfxToggle}
-            onClick={toggleSound}
-            aria-pressed={sound}
-            onMouseEnter={() => sfx('hover')}
-          >
-            SFX <span className={sound ? styles.sfxOn : styles.sfxOff}>{sound ? '◼' : '◻'}</span>
-          </button>
-        </div>
-      </aside>
-
-      {/* ---------------- Content ---------------- */}
-      <main className={styles.content}>
+      {/* ---------------- Sticky top bar ---------------- */}
+      <header className={styles.topbar}>
         <div className={styles.ticker} aria-hidden="true">
           <div className={styles.tickerTrack}>
             {Array.from({ length: 2 }).map((_, k) => (
@@ -204,32 +227,81 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className={styles.stage}>
-          <section key={active} className={styles.panel}>
-            <header className={styles.panelHead}>
-              <span className={styles.panelKicker}>
-                SECTION {String(active + 1).padStart(2, '0')} / {SECTIONS.length.toString().padStart(2, '0')}
-              </span>
-            </header>
+        <div className={styles.bar}>
+          <a
+            href="#intro"
+            className={styles.brand}
+            onClick={(e) => { e.preventDefault(); go(0) }}
+            onMouseEnter={() => sfx('hover')}
+          >
+            brown<span className={styles.brandAccent}>builds</span>
+            <span className={styles.caret}>_</span>
+          </a>
 
-            {active === 0 && <Intro go={go} sfx={sfx} />}
-            {active === 1 && (
-              <Work openCard={openCard} setOpenCard={setOpenCard} sfx={sfx} />
-            )}
-            {active === 2 && <About />}
-            {active === 3 && <Services sfx={sfx} />}
-            {active === 4 && <Faq sfx={sfx} />}
-            {active === 5 && <Contact sfx={sfx} />}
-          </section>
+          <nav className={styles.nav} aria-label="Sections">
+            {navLinks}
+          </nav>
+
+          <div className={styles.sideFoot}>
+            <div className={styles.status}>
+              <span className={styles.dot} aria-hidden="true" />
+              <span>AVAILABLE</span>
+            </div>
+            <div className={styles.clock}>{clock}</div>
+            <button
+              className={styles.sfxToggle}
+              onClick={toggleSound}
+              aria-pressed={sound}
+              onMouseEnter={() => sfx('hover')}
+            >
+              SFX <span className={sound ? styles.sfxOn : styles.sfxOff}>{sound ? '◼' : '◻'}</span>
+            </button>
+            <button
+              className={`${styles.sfxToggle} ${styles.menuBtn}`}
+              onClick={() => { setMenuOpen((o) => !o); sfx('select') }}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {menuOpen ? '✕' : '☰'}
+            </button>
+          </div>
         </div>
 
-        <footer className={styles.hint}>
-          <span>↑↓ sections</span>
-          <span>1–6 jump</span>
-          <span>ENTER open</span>
-          <span>ESC back</span>
-        </footer>
+        {menuOpen && (
+          <nav id="mobile-menu" className={styles.mobileNav} aria-label="Sections">
+            {navLinks}
+          </nav>
+        )}
+      </header>
+
+      {/* ---------------- Sections ---------------- */}
+      <main className={styles.content}>
+        {SECTIONS.map((s, i) => (
+          <section
+            key={s.id}
+            id={s.id}
+            aria-label={s.label}
+            className={styles.section}
+          >
+            <div className={`${styles.sectionInner} ${seen.has(i) ? styles.panel : styles.panelIdle}`}>
+              <header className={styles.panelHead}>
+                <span className={styles.panelKicker}>
+                  SECTION {String(i + 1).padStart(2, '0')} / {String(SECTIONS.length).padStart(2, '0')}
+                </span>
+              </header>
+              {panels[i]}
+            </div>
+          </section>
+        ))}
       </main>
+
+      <footer className={styles.hint}>
+        <span>↑↓ sections</span>
+        <span>1–4 jump</span>
+        <span>ENTER open</span>
+        <span>ESC back</span>
+      </footer>
     </div>
   )
 }
@@ -258,7 +330,7 @@ function Intro({ go, sfx }) {
           </button>
           <button
             className={styles.btnGhost}
-            onClick={() => go(5)}
+            onClick={() => go(3)}
             onMouseEnter={() => sfx('hover')}
           >
             Get in touch
@@ -278,21 +350,32 @@ function Work({ openCard, setOpenCard, sfx }) {
 
       <div className={styles.arcana}>
         {projects.map((p, i) => (
-          <button
+          <article
             key={p.title}
             className={styles.arcCard}
             style={{ '--acc': accents[i % accents.length] }}
-            onClick={() => { setOpenCard(i); sfx('select') }}
             onMouseEnter={() => sfx('hover')}
           >
-            <span className={styles.arcNum}>{String(i + 1).padStart(2, '0')}</span>
-            <span className={styles.arcThumb}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.image} alt={`${p.title} website`} loading="lazy" />
-            </span>
-            <span className={styles.arcName}>{p.title}</span>
-            {p.tag && <span className={styles.arcTag}>{p.tag}</span>}
-          </button>
+            <button
+              className={styles.arcOpen}
+              onClick={() => { setOpenCard(i); sfx('select') }}
+              aria-label={`${p.title} details`}
+            >
+              <span className={styles.arcNum}>{String(i + 1).padStart(2, '0')}</span>
+              <span className={styles.arcThumb}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.image} alt={`${p.title} website`} loading="lazy" />
+              </span>
+              <span className={styles.arcTitleRow}>
+                <span className={styles.arcName}>{p.title}</span>
+                {p.tag && <span className={styles.arcTag}>{p.tag}</span>}
+              </span>
+              <span className={styles.arcBlurb}>{p.blurb}</span>
+            </button>
+            <a className={styles.arcLink} href={p.live} onMouseEnter={() => sfx('hover')}>
+              Visit site →
+            </a>
+          </article>
         ))}
       </div>
 
@@ -341,7 +424,43 @@ function Work({ openCard, setOpenCard, sfx }) {
   )
 }
 
-function About() {
+function About({ sfx }) {
+  const [tab, setTab] = useState(0)
+  return (
+    <div className={styles.aboutWrap}>
+      <div className={styles.tabs} role="tablist" aria-label="About sections">
+        {ABOUT_TABS.map((t, i) => (
+          <button
+            key={t}
+            id={`about-tab-${i}`}
+            role="tab"
+            aria-selected={tab === i}
+            aria-controls={`about-tabpanel-${i}`}
+            className={`${styles.navItem} ${styles.tab} ${tab === i ? styles.navActive : ''}`}
+            onClick={() => { setTab(i); sfx('select') }}
+            onMouseEnter={() => sfx('hover')}
+          >
+            <span className={styles.navNum}>{String(i + 1).padStart(2, '0')}</span>
+            <span className={styles.navLabel}>{t}</span>
+          </button>
+        ))}
+      </div>
+      <div
+        key={tab}
+        id={`about-tabpanel-${tab}`}
+        role="tabpanel"
+        aria-labelledby={`about-tab-${tab}`}
+        className={styles.tabPanel}
+      >
+        {tab === 0 && <AboutText />}
+        {tab === 1 && <Services sfx={sfx} />}
+        {tab === 2 && <Faq sfx={sfx} />}
+      </div>
+    </div>
+  )
+}
+
+function AboutText() {
   return (
     <div className={styles.about}>
       <h2 className={styles.panelTitle}>About</h2>
