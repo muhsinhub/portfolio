@@ -40,7 +40,7 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-html { background: var(--bg); }
+html { background: var(--bg); scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-mono);
@@ -52,7 +52,6 @@ body {
   background-attachment: fixed;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden; /* app shell manages its own scroll */
 }
 
 h1, h2, h3, h4 {
