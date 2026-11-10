@@ -13,8 +13,8 @@ const SECTIONS = [
 ]
 const ABOUT_TABS = ['About', 'Services', 'FAQ']
 
-// Single accent across the whole site — one blue, used everywhere.
-const accents = ['var(--cyan)', 'var(--cyan)', 'var(--cyan)', 'var(--cyan)']
+// Single accent across the whole site — one light grey, used everywhere.
+const accents = ['var(--accent)', 'var(--accent)', 'var(--accent)', 'var(--accent)']
 
 const projects = [
   {
@@ -303,7 +303,7 @@ function Intro({ go, sfx }) {
       <div className={styles.introMain}>
         <h1 className={styles.introTitle}>
           Real websites for{' '}
-          <span className={styles.titleCyan}>local businesses</span>.
+          <span className={styles.titleAccent}>local businesses</span>.
         </h1>
         <p className={styles.introSub}>
           I build custom sites for small and local businesses, then get them live and hosted on
