@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './Portfolio.module.css'
-import CodeRain from './CodeRain'
+import Starfield from './Starfield'
 
 /* ---- content (unchanged info, new layout) ---- */
 // One section per screen. Services and FAQ live as tabs inside About.
@@ -215,7 +215,7 @@ export default function Portfolio() {
 
   return (
     <>
-    <CodeRain />
+    <Starfield />
     <div className={styles.shell}>
       {/* ---------------- Sticky top bar ---------------- */}
       <header className={styles.topbar}>

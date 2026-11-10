@@ -14,8 +14,6 @@
   z-index: 0;
   pointer-events: none;
 }
-/* falling-code background: kept dim so text stays readable */
-.codeRain { opacity: 0.32; }
 
 /* ===================== Sticky top bar ===================== */
 .topbar {
